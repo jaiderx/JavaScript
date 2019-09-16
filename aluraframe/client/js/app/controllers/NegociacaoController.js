@@ -13,15 +13,17 @@ class NegociacaoController{
         let data = new Date(...
             this._inputData.value
                 .split('-')
-                .map(function (item, indice) {
-                if (indice == 1) {
-                    return item-1;
-                    }
-                return item;
-                })
+                .map((item, indice) => item-indice % 2)
         );
+        let negociacao = new Negociacao(
+            data,
+            this._inputQuantidade.value,
+            this._inputValor.value
 
-        console.log(data);
-		//adicionar a negociação em uma lista
+        );
+        let diaMesAno = negociacao.data.getDate()
+            + '/' + (negociacao.data.getMonth()+1)
+            + '/' + negociacao.data.getFullYear();
+        console.log(diaMesAno);
 	}
 }
